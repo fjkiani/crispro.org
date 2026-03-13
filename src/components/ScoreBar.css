@@ -1,0 +1,14 @@
+.score-bar-wrap { margin-top: var(--space-sm); }
+.score-bar-label { font-size: 0.7rem; color: var(--text-muted); margin-bottom: 4px; }
+.score-bar-track {
+  height: 8px;
+  background: var(--bg-surface-active);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.score-bar-fill {
+  height: 100%;
+  border-radius: 4px;
+  background: linear-gradient(90deg, var(--red), var(--amber), var(--emerald));
+  transition: width 0.8s ease-out;
+}

@@ -1,0 +1,101 @@
+.score-form {
+  border-radius: var(--radius-xl);
+  padding: var(--space-xl);
+}
+
+.form-title { font-size: 1.2rem; font-weight: 700; margin-bottom: var(--space-lg); color: var(--text-primary); }
+
+.section-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-dim);
+  margin-bottom: var(--space-sm);
+  margin-top: var(--space-md);
+}
+
+.gene-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: var(--space-md);
+  margin-bottom: var(--space-md);
+}
+
+.clinical-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: var(--space-md);
+  margin-bottom: var(--space-md);
+}
+
+.field { display: flex; flex-direction: column; gap: 4px; }
+.field label {
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.field input, .field select {
+  background: var(--input-bg);
+  border: 1px solid var(--input-border);
+  border-radius: var(--radius-sm);
+  padding: 0.55rem 0.7rem;
+  color: var(--input-text);
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  outline: none;
+  transition: all var(--transition-fast);
+}
+
+.field input:focus, .field select:focus {
+  border-color: var(--cyan);
+  box-shadow: 0 0 0 3px var(--cyan-glow);
+}
+
+.field select option { background: var(--bg-primary); color: var(--text-primary); }
+.helper { font-size: 0.7rem; color: var(--text-dim); margin-top: 2px; }
+
+.api-key-section { margin-bottom: var(--space-lg); }
+.api-key-section .field { max-width: 400px; }
+
+.btn-row { display: flex; gap: var(--space-md); flex-wrap: wrap; }
+
+.btn {
+  padding: 0.65rem 1.25rem;
+  border-radius: var(--radius-md);
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: all var(--transition-normal);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.btn-demo {
+  background: linear-gradient(135deg, var(--cyan), #0891b2);
+  color: white;
+  box-shadow: 0 4px 16px var(--cyan-glow);
+}
+
+.btn-demo:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 24px rgba(6, 182, 212, 0.3);
+}
+
+.btn-score {
+  background: linear-gradient(135deg, var(--emerald), #059669);
+  color: white;
+  box-shadow: 0 4px 16px var(--emerald-glow);
+}
+
+.btn-score:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 24px rgba(16, 185, 129, 0.3);
+}

@@ -1,0 +1,73 @@
+.pw-page { padding-bottom: var(--space-2xl); }
+
+.pw-header {
+  text-align: center;
+  padding: var(--space-2xl) 0 var(--space-lg);
+}
+
+.pw-badge {
+  display: inline-block;
+  padding: 0.25rem 0.7rem;
+  border-radius: var(--radius-full);
+  background: var(--amber-glow);
+  border: 1px solid var(--amber);
+  color: var(--amber);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: var(--space-md);
+}
+
+.pw-header h1 {
+  font-size: 2.4rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  background: var(--title-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.pw-header p {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  max-width: 550px;
+  margin: var(--space-sm) auto 0;
+}
+
+.pw-context {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  margin-bottom: var(--space-lg);
+}
+
+.pw-context p {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.65;
+}
+
+.pw-context-who {
+  margin-top: var(--space-sm);
+  padding-top: var(--space-sm);
+  border-top: 1px solid var(--border-subtle);
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+.pw-error {
+  margin-top: var(--space-md);
+  padding: var(--space-md);
+  background: var(--error-bg);
+  border: 1px solid var(--error-border);
+  border-radius: var(--radius-md);
+  color: var(--error-text);
+  font-size: 0.85rem;
+}
+
+@media (max-width: 640px) {
+  .pw-header h1 { font-size: 1.75rem; }
+}

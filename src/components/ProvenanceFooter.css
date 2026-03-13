@@ -1,0 +1,42 @@
+.provenance {
+  margin-top: var(--space-xl);
+  padding: var(--space-lg);
+  border-radius: var(--radius-lg);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+}
+
+.provenance-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: var(--space-md);
+  color: var(--text-primary);
+}
+
+.provenance-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--space-sm) var(--space-lg);
+}
+
+.prov-item {
+  display: flex;
+  gap: var(--space-sm);
+  padding: 4px 0;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.prov-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-dim);
+  min-width: 90px;
+  flex-shrink: 0;
+}
+
+.prov-value {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}

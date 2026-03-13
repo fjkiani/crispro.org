@@ -1,0 +1,12 @@
+.info-card {
+  padding: var(--space-lg);
+  transition: all var(--transition-normal);
+}
+
+.info-card:hover {
+  transform: translateY(-2px);
+}
+
+.info-card-icon { font-size: 1.5rem; display: block; margin-bottom: var(--space-sm); }
+.info-card-title { font-size: 0.95rem; font-weight: 600; color: var(--text-primary); margin-bottom: 0.3rem; }
+.info-card-detail { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.55; }
