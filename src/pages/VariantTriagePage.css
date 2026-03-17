@@ -1,0 +1,141 @@
+.vt-page {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: var(--space-2xl) var(--space-lg);
+  padding-bottom: 8rem; /* room for fixed cart panel */
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+}
+
+/* Hero */
+.vt-hero {
+  text-align: center;
+}
+
+.vt-hero-badge {
+  display: inline-block;
+  padding: 3px 12px;
+  border-radius: var(--radius-full);
+  background: var(--amber-glow);
+  border: 1px solid var(--amber);
+  color: var(--amber);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: var(--space-md);
+}
+
+.vt-title {
+  font-size: 2.4rem;
+  font-weight: 800;
+  background: var(--title-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: var(--space-md);
+  line-height: 1.2;
+}
+
+.vt-subtitle {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Sections */
+.vt-section {
+  padding: var(--space-xl);
+}
+
+.vt-section-header {
+  margin-bottom: var(--space-lg);
+}
+
+.vt-section-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: var(--space-xs);
+}
+
+.vt-section-desc {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+/* Tabs */
+.vt-tabs {
+  display: flex;
+  gap: var(--space-xs);
+  margin-bottom: var(--space-lg);
+  border-bottom: 1px solid var(--border-subtle);
+  padding-bottom: var(--space-sm);
+}
+
+.vt-tab {
+  padding: 0.45rem var(--space-md);
+  background: none;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  color: var(--text-muted);
+  font-size: 0.88rem;
+  font-weight: 500;
+  font-family: var(--font-sans);
+  cursor: pointer;
+  transition: background var(--transition-fast), color var(--transition-fast),
+    border-color var(--transition-fast);
+}
+
+.vt-tab:hover {
+  background: var(--bg-surface-hover);
+  color: var(--text-secondary);
+}
+
+.vt-tab--active {
+  background: var(--cyan-glow);
+  border-color: var(--cyan);
+  color: var(--cyan);
+  font-weight: 600;
+}
+
+/* Browse areas */
+.vt-browse-body {
+  min-height: 60px;
+}
+
+.vt-chrom-browse,
+.vt-gene-browse {
+  animation: fadeIn 0.2s ease-out;
+}
+
+.vt-browse-hint {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  margin-bottom: var(--space-md);
+}
+
+/* ClinVar section */
+.vt-clinvar-section {
+  animation: fadeUp 0.3s ease-out;
+}
+
+/* No selection placeholder */
+.vt-no-selection {
+  text-align: center;
+  padding: var(--space-3xl) var(--space-lg);
+  color: var(--text-muted);
+}
+
+.vt-no-selection-icon {
+  font-size: 2.5rem;
+  margin-bottom: var(--space-md);
+  opacity: 0.5;
+}
+
+.vt-no-selection p {
+  font-size: 0.92rem;
+}

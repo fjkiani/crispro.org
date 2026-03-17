@@ -12,6 +12,19 @@ dist
 dist-ssr
 *.local
 
+# Python virtual environments
+.venv/
+venv/
+env/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Python build artifacts
+*.egg-info/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
@@ -22,3 +35,5 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+./evo2-backend/.venv

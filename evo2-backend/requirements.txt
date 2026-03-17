@@ -1,0 +1,12 @@
+modal
+matplotlib
+pandas
+seaborn
+scikit-learn
+openpyxl
+# VUS Triage Co-Pilot dependencies
+anthropic>=0.25.0
+sentence-transformers>=2.7.0
+numpy
+pydantic>=2.0
+pytest

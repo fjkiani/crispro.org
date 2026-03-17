@@ -1,0 +1,226 @@
+.clinvar-table-wrap {
+  animation: fadeUp 0.3s ease-out;
+}
+
+.clinvar-table-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-md);
+}
+
+.clinvar-table-title {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+}
+
+.clinvar-count {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-full);
+  padding: 2px 10px;
+}
+
+.clinvar-scroll {
+  overflow-x: auto;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-subtle);
+}
+
+.clinvar-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+
+.clinvar-table thead {
+  background: var(--bg-surface);
+}
+
+.clinvar-table th {
+  padding: 0.6rem var(--space-md);
+  text-align: left;
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  white-space: nowrap;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.clinvar-table td {
+  padding: 0.65rem var(--space-md);
+  border-bottom: 1px solid var(--border-subtle);
+  vertical-align: middle;
+  color: var(--text-secondary);
+}
+
+.clinvar-table tr:last-child td {
+  border-bottom: none;
+}
+
+.clinvar-table tr:hover td {
+  background: var(--bg-surface);
+}
+
+.clinvar-row--in-cart td {
+  background: var(--emerald-glow);
+}
+
+.clinvar-cell-title {
+  max-width: 280px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--text-primary) !important;
+  font-size: 0.82rem;
+}
+
+.clinvar-type {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  background: var(--bg-surface);
+  padding: 2px 8px;
+  border-radius: var(--radius-sm);
+  white-space: nowrap;
+}
+
+.clinvar-cell-pos {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--text-dim);
+  white-space: nowrap;
+}
+
+.clinvar-cell-action {
+  text-align: right;
+  white-space: nowrap;
+}
+
+/* Clinical significance badges */
+.clinvar-badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  font-size: 0.73rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.clinvar-badge--pathogenic {
+  background: var(--red-glow);
+  color: var(--red);
+  border: 1px solid var(--red);
+}
+
+.clinvar-badge--likely-pathogenic {
+  background: var(--amber-glow);
+  color: var(--amber);
+  border: 1px solid var(--amber);
+}
+
+.clinvar-badge--benign {
+  background: var(--emerald-glow);
+  color: var(--emerald);
+  border: 1px solid var(--emerald);
+}
+
+.clinvar-badge--likely-benign {
+  background: var(--emerald-glow);
+  color: var(--emerald);
+  border: 1px solid rgba(5, 150, 105, 0.3);
+}
+
+.clinvar-badge--vus {
+  background: var(--purple-glow);
+  color: var(--purple);
+  border: 1px solid var(--purple);
+}
+
+.clinvar-badge--conflicting {
+  background: var(--amber-glow);
+  color: var(--amber);
+  border: 1px solid rgba(217, 119, 6, 0.3);
+}
+
+.clinvar-badge--unknown {
+  background: var(--bg-surface);
+  color: var(--text-muted);
+  border: 1px solid var(--border-subtle);
+}
+
+/* Add to triage button */
+.clinvar-add-btn {
+  padding: 0.3rem 0.75rem;
+  background: var(--cyan-glow);
+  border: 1px solid var(--cyan);
+  border-radius: var(--radius-sm);
+  color: var(--cyan);
+  font-size: 0.78rem;
+  font-weight: 600;
+  font-family: var(--font-sans);
+  cursor: pointer;
+  transition: background var(--transition-fast), transform var(--transition-fast);
+}
+
+.clinvar-add-btn:hover {
+  background: var(--cyan);
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+.clinvar-add-btn--remove {
+  background: var(--emerald-glow);
+  border-color: var(--emerald);
+  color: var(--emerald);
+}
+
+.clinvar-add-btn--remove:hover {
+  background: var(--emerald);
+  color: #fff;
+}
+
+.clinvar-add-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Loading / error / empty states */
+.clinvar-loading {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  padding: var(--space-lg) 0;
+}
+
+.clinvar-spinner {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--border-default);
+  border-top-color: var(--cyan);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+.clinvar-error {
+  padding: var(--space-md);
+  background: var(--error-bg);
+  border: 1px solid var(--error-border);
+  border-radius: var(--radius-md);
+  color: var(--error-text);
+  font-size: 0.85rem;
+}
+
+.clinvar-empty {
+  padding: var(--space-lg) 0;
+  color: var(--text-muted);
+  font-size: 0.88rem;
+  text-align: center;
+}

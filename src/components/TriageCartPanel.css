@@ -1,0 +1,207 @@
+.triage-cart-panel {
+  position: fixed;
+  bottom: var(--space-xl);
+  right: var(--space-xl);
+  width: 340px;
+  background: var(--card-bg);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+  z-index: 100;
+  overflow: hidden;
+  transition: box-shadow var(--transition-normal);
+}
+
+.triage-cart-panel--open {
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+}
+
+.triage-cart-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem var(--space-md);
+  cursor: pointer;
+  background: var(--bg-surface);
+  border-bottom: 1px solid var(--border-subtle);
+  user-select: none;
+  transition: background var(--transition-fast);
+}
+
+.triage-cart-header:hover {
+  background: var(--bg-surface-hover);
+}
+
+.triage-cart-summary {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.triage-cart-icon {
+  font-size: 1rem;
+}
+
+.triage-cart-label {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.triage-cart-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 5px;
+  background: var(--cyan);
+  color: #fff;
+  border-radius: var(--radius-full);
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.triage-cart-badge--empty {
+  background: var(--border-default);
+  color: var(--text-muted);
+}
+
+.triage-cart-chevron {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
+/* Body */
+.triage-cart-body {
+  max-height: 280px;
+  overflow-y: auto;
+  animation: fadeUp 0.2s ease-out;
+}
+
+.triage-cart-empty {
+  padding: var(--space-md);
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  text-align: center;
+  line-height: 1.5;
+}
+
+/* Variant list */
+.triage-cart-list {
+  list-style: none;
+}
+
+.triage-cart-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.55rem var(--space-md);
+  border-bottom: 1px solid var(--border-subtle);
+  transition: background var(--transition-fast);
+}
+
+.triage-cart-item:last-child {
+  border-bottom: none;
+}
+
+.triage-cart-item:hover {
+  background: var(--bg-surface);
+}
+
+.triage-cart-item-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.triage-cart-item-gene {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--cyan);
+}
+
+.triage-cart-item-pos {
+  font-size: 0.72rem;
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+}
+
+.triage-cart-item-class {
+  font-size: 0.7rem;
+  color: var(--text-dim);
+}
+
+.triage-cart-remove {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 1.1rem;
+  cursor: pointer;
+  padding: 0 4px;
+  line-height: 1;
+  flex-shrink: 0;
+  transition: color var(--transition-fast);
+}
+
+.triage-cart-remove:hover {
+  color: var(--red);
+}
+
+/* Actions row */
+.triage-cart-actions {
+  padding: var(--space-sm) var(--space-md);
+  border-top: 1px solid var(--border-subtle);
+}
+
+.triage-cart-clear {
+  background: none;
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-sm);
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  cursor: pointer;
+  padding: 3px 10px;
+  font-family: var(--font-sans);
+  transition: border-color var(--transition-fast), color var(--transition-fast);
+}
+
+.triage-cart-clear:hover {
+  border-color: var(--red);
+  color: var(--red);
+}
+
+/* Footer / CTA */
+.triage-cart-footer {
+  padding: var(--space-sm) var(--space-md);
+  border-top: 1px solid var(--border-subtle);
+  background: var(--bg-surface);
+}
+
+.triage-perform-btn {
+  width: 100%;
+  padding: 0.6rem var(--space-md);
+  background: linear-gradient(135deg, var(--cyan), var(--emerald));
+  border: none;
+  border-radius: var(--radius-md);
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 700;
+  font-family: var(--font-sans);
+  cursor: pointer;
+  transition: opacity var(--transition-fast), transform var(--transition-fast);
+  box-shadow: 0 2px 8px rgba(8, 145, 178, 0.3);
+}
+
+.triage-perform-btn:hover:not(:disabled) {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.triage-perform-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  background: var(--border-default);
+  box-shadow: none;
+}

@@ -21,6 +21,9 @@ export default function Layout() {
               <NavLink to="/platinum-window" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
                 Platinum Window
               </NavLink>
+              <NavLink to="/variant-triage" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
+                Variant Triage
+              </NavLink>
               <NavLink to="/about" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
                 About
               </NavLink>

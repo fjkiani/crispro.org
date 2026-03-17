@@ -1,0 +1,136 @@
+.gene-search {
+  position: relative;
+}
+
+.gene-search-input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.gene-search-input {
+  width: 100%;
+  padding: 0.65rem var(--space-md);
+  background: var(--input-bg);
+  border: 1px solid var(--input-border);
+  border-radius: var(--radius-md);
+  color: var(--input-text);
+  font-family: var(--font-sans);
+  font-size: 0.92rem;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+  outline: none;
+}
+
+.gene-search-input:focus {
+  border-color: var(--cyan);
+  box-shadow: 0 0 0 3px var(--cyan-glow);
+}
+
+.gene-search-spinner {
+  position: absolute;
+  right: var(--space-md);
+  width: 14px;
+  height: 14px;
+  border: 2px solid var(--border-default);
+  border-top-color: var(--cyan);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+.gene-search-spinner--inline {
+  position: static;
+  display: inline-block;
+  margin-right: var(--space-xs);
+  flex-shrink: 0;
+}
+
+.gene-search-results {
+  list-style: none;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(100% + 4px);
+  z-index: 50;
+  background: var(--card-bg);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  overflow: hidden;
+  animation: fadeUp 0.15s ease-out;
+}
+
+.gene-search-result {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: 0.6rem var(--space-md);
+  cursor: pointer;
+  transition: background var(--transition-fast);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.gene-search-result:last-child {
+  border-bottom: none;
+}
+
+.gene-search-result:hover {
+  background: var(--bg-surface-hover);
+}
+
+.gene-result-symbol {
+  font-weight: 600;
+  font-size: 0.88rem;
+  color: var(--cyan);
+  min-width: 4rem;
+}
+
+.gene-result-name {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.gene-result-chrom {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  background: var(--bg-surface);
+  padding: 2px 6px;
+  border-radius: var(--radius-sm);
+}
+
+.gene-search-error {
+  margin-top: var(--space-sm);
+  font-size: 0.82rem;
+  color: var(--red);
+}
+
+.gene-search-empty {
+  margin-top: var(--space-sm);
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+.gene-search-hint {
+  margin-top: var(--space-sm);
+  font-size: 0.75rem;
+  color: var(--text-dim);
+}
+
+.gene-search-example {
+  background: none;
+  border: none;
+  color: var(--cyan);
+  font-size: 0.75rem;
+  cursor: pointer;
+  padding: 0;
+  text-decoration: underline;
+  font-family: var(--font-sans);
+}
+
+.gene-search-example:hover {
+  color: var(--cyan-light);
+}

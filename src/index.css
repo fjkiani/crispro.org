@@ -67,6 +67,11 @@
   /* JSON output */
   --json-bg: #f8fafc;
   --json-text: #334155;
+
+  /* Triage priority */
+  --priority-high: #dc2626;
+  --priority-medium: #d97706;
+  --priority-low: #059669;
 }
 
 /* ── Dark Mode ────────────────────────────────────────────────────────────── */
@@ -122,6 +127,11 @@
 
   --json-bg: rgba(0, 0, 0, 0.3);
   --json-text: #94a3b8;
+
+  /* Triage priority */
+  --priority-high: #ef4444;
+  --priority-medium: #f59e0b;
+  --priority-low: #10b981;
 }
 
 /* ── Shared Tokens ────────────────────────────────────────────────────────── */
