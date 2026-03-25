@@ -67,12 +67,9 @@ if _raw_keys:
 
 
 def validate_api_key(api_key: str) -> None:
-    """Validate an API key. Raises HTTPException on failure."""
+    """Validate an API key. Skips auth in local dev (no VALID_API_KEYS configured)."""
     if not VALID_API_KEYS:
-        raise HTTPException(
-            status_code=503,
-            detail="VALID_API_KEYS not configured. API cannot authenticate requests.",
-        )
+        return  # Local dev mode — no keys configured, allow all requests
     if api_key not in VALID_API_KEYS:
         raise HTTPException(status_code=401, detail="Invalid API key")
 

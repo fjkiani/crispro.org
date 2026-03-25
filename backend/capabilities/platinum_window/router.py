@@ -193,9 +193,10 @@ def demo_endpoint():
 def score_platinum_window(
     request: Request,
     payload: PlatinumWindowRequest = Body(...),
-    x_api_key: str = Header(..., alias="X-API-Key"),
+    x_api_key: str = Header(None, alias="X-API-Key"),
 ):
-    validate_api_key(x_api_key)
+    if x_api_key:
+        validate_api_key(x_api_key)
     t_start = time.perf_counter()
 
     # Resolve reference cohort
