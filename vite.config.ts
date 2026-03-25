@@ -8,12 +8,12 @@ export default defineConfig({
     proxy: {
       // Forward all /api calls to the Platinum Window backend
       '/api': {
-        target: 'http://localhost:8080',
+        target: 'http://localhost:8000',
         changeOrigin: true,
       },
       // Also proxy /health for status checks
       '/health': {
-        target: 'http://localhost:8080',
+        target: 'http://localhost:8000',
         changeOrigin: true,
       },
     },
