@@ -119,6 +119,13 @@ export const CAPABILITIES: Capability[] = [
     link: '/platinum-window',
   },
   {
+    icon: '🦴',
+    title: 'Progression Arbiter',
+    desc: 'Bone pseudo-progression vs true progression scorer for metastatic breast cancer. L2 logistic model trained on 239 events from 9 published studies.',
+    status: 'LIVE',
+    link: '/progression-arbiter',
+  },
+  {
     icon: '🧪',
     title: 'Resistance Profiler',
     desc: 'Multi-mechanism resistance detection across platinum, taxane, and checkpoint pathways. 7D mechanistic vector space with 2-of-N state machine.',
@@ -137,6 +144,57 @@ export const CAPABILITIES: Capability[] = [
     status: 'COMING SOON',
   },
 ];
+
+// ── Progression Arbiter ──────────────────────────────────────────────────────
+
+export const PROGRESSION_ARBITER = {
+  title: 'PROGRESSION_ARBITER',
+  subtitle: 'Bone Pseudo-Progression vs True Progression Scoring',
+  stats: '239 Events | 9 Studies | L2 Logistic Regression',
+} as const;
+
+export const ARBITER_CONTEXT = {
+  problemDescription:
+    'Bone imaging changes during systemic therapy for metastatic breast cancer are frequently ambiguous. New sclerotic lesions, isolated SUV increases, and sub-5mm size changes can represent either healing (pseudo-progression) or true disease progression. Premature therapy switches based on these findings can deny patients benefit from effective treatment.',
+  whoNeedsThis:
+    'Medical oncologists treating metastatic breast cancer with bone-predominant disease, radiologists interpreting restaging scans, and tumor boards evaluating equivocal bone findings.',
+} as const;
+
+export const IMAGING_TYPES = [
+  { value: 'NEW_SCLEROTIC_BONE', label: 'New Sclerotic Bone Lesion' },
+  { value: 'SUV_INCREASE_NO_SIZE', label: 'SUV Increase (No Size Change)' },
+  { value: 'SUB_5MM_SIZE_INCREASE', label: 'Sub-5mm Size Increase' },
+  { value: 'NEW_SOFT_TISSUE_LESION', label: 'New Soft Tissue Lesion' },
+  { value: 'RECIST_PROGRESSION', label: 'RECIST Progression' },
+  { value: 'STABLE_DISEASE', label: 'Stable Disease' },
+  { value: 'OTHER_OR_UNCLEAR', label: 'Other / Unclear' },
+] as const;
+
+export const THERAPY_CLASSES = [
+  { value: 'CDK46', label: 'CDK4/6 Inhibitor' },
+  { value: 'HER2', label: 'HER2-Targeted' },
+  { value: 'ENDOCRINE', label: 'Endocrine Therapy' },
+  { value: 'CHEMO', label: 'Chemotherapy' },
+  { value: 'IO', label: 'Immunotherapy' },
+  { value: 'OTHER', label: 'Other' },
+] as const;
+
+export const ARBITER_DEFAULTS = {
+  imaging_change_type: 'NEW_SCLEROTIC_BONE' as const,
+  therapy_class: 'CDK46' as const,
+  symptomatic: false as boolean | null,
+  new_pain_at_site: false as boolean | null,
+  healing_flag: true,
+  weeks_on_therapy: 12,
+  alp_delta_pct: -5,
+  ca153_delta_pct: 0,
+};
+
+export const ARBITER_RISK_LABELS = {
+  LOW: '🟢 LOW RISK — Likely Pseudo-Progression',
+  MID: '🟡 INDETERMINATE — Additional Workup Required',
+  HIGH: '🔴 HIGH RISK — True Progression Concern',
+} as const;
 
 // ── Mission ──────────────────────────────────────────────────────────────────
 

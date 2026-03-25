@@ -33,6 +33,12 @@ async def lifespan(app: FastAPI):
     from backend.capabilities.platinum_window.router import load_reference
     load_reference()
     logger.info("✅ Platinum Window reference data loaded")
+
+    # Progression Arbiter model
+    from backend.capabilities.progression_arbiter.router import load_model
+    load_model()
+    logger.info("✅ Progression Arbiter model loaded")
+
     yield
 
 

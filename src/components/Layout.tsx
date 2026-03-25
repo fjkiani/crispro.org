@@ -21,6 +21,9 @@ export default function Layout() {
               <NavLink to="/platinum-window" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
                 Platinum Window
               </NavLink>
+              <NavLink to="/progression-arbiter" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
+                Progression Arbiter
+              </NavLink>
               <NavLink to="/about" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
                 About
               </NavLink>
