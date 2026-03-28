@@ -11,18 +11,14 @@ interface Props {
 
 export default function ScoreForm({ onDemo, onScore, loading }: Props) {
   const [form, setForm] = useState<PlatinumWindowRequest>(PATIENT_1_DEFAULTS);
-  const [apiKey, setApiKey] = useState('');
+
 
   const updateGene = (gene: string, value: string) => {
     setForm(prev => ({ ...prev, [gene]: parseFloat(value) || 0 }));
   };
 
   const handleScore = () => {
-    if (!apiKey.trim()) {
-      alert('Please enter an API key. Use "Run Demo" for keyless access.');
-      return;
-    }
-    onScore(form, apiKey);
+    onScore(form, '');
   };
 
   return (
@@ -81,18 +77,7 @@ export default function ScoreForm({ onDemo, onScore, loading }: Props) {
         </div>
       </div>
 
-      <div className="api-key-section">
-        <div className="field">
-          <label>API Key</label>
-          <input
-            type="password"
-            value={apiKey}
-            onChange={e => setApiKey(e.target.value)}
-            placeholder="Not needed for Demo"
-          />
-          <span className="helper">Required only for "Score Patient". Demo uses hardcoded Patient 1.</span>
-        </div>
-      </div>
+
 
       <div className="btn-row">
         <button className="btn btn-demo" onClick={onDemo} disabled={loading}>
