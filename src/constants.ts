@@ -86,115 +86,132 @@ export const CLINICAL_CONTEXT = {
 
 // ── Capabilities ─────────────────────────────────────────────────────────────
 
-export type CapabilityStatus = 'LIVE' | 'COMING SOON';
+export type CapabilityStatus = 'LIVE' | 'BETA' | 'COMING SOON';
 
 export interface Capability {
   icon: string;
   title: string;
+  subtitle?: string;
   desc: string;
   status: CapabilityStatus;
   link?: string;
+  tag?: string;               // short label e.g. 'Ovarian · HGSOC'
+  gradient?: string;          // tailwind gradient class
+  stats?: { value: string; label: string }[];
+  features?: string[];        // bullet highlights
+  ctaLabel?: string;
 }
 
-export const CAPABILITIES: Capability[] = [
+// ── PRODUCTS (drives the homepage dynamically) ───────────────────────────────
+
+export const PRODUCTS: Capability[] = [
   {
-    icon: '🧬',
-    title: '8D Biomarker Fingerprint',
-    desc: `FAP + CXCL10 scored against ${PROVENANCE.cohortSize.toLocaleString()} ${PROVENANCE.cohort} HGSOC patients. ${PROVENANCE.regressionMethod} yields PLATINUM_SCORE with HR ${PROVENANCE.hazardRatio}.`,
+    icon: '💎',
+    title: 'Platinum Window',
+    subtitle: 'Real-time platinum timing for HGSOC',
+    tag: 'Ovarian Cancer · HGSOC',
+    desc: 'Patient-specific molecular countdown before the stromal cage closes platinum responsiveness. Replace calendar-based dosing with a data-driven treatment window derived from 10-gene tumor profiling.',
     status: 'LIVE',
     link: '/platinum-window',
-  },
-  {
-    icon: '⏱️',
-    title: 'Window Timer',
-    desc: 'Patient-specific countdown for platinum cycles remaining before stromal cage closure. Metformin extends +2–3 cycles via AMPK activation.',
-    status: 'LIVE',
-    link: '/platinum-window',
-  },
-  {
-    icon: '💊',
-    title: 'Treatment Sequencer',
-    desc: 'Automated 3-step sequence: Metformin → Dupilumab → Checkpoint inhibitor. Routes to Publication 1 or Publication 2 trial pathway.',
-    status: 'LIVE',
-    link: '/platinum-window',
+    gradient: 'from-violet-500 to-indigo-600',
+    stats: [
+      { value: '2,444', label: 'Patients' },
+      { value: '16', label: 'Cohorts' },
+      { value: '0.54', label: 'Hazard Ratio' },
+      { value: '10', label: 'Genes' },
+    ],
+    features: [
+      '8D Biomarker Fingerprint (FAP + CXCL10)',
+      'Elastic net Cox regression · HR 0.54',
+      'Patient-specific cycle countdown',
+      'Automated 3-step treatment sequencer',
+    ],
+    ctaLabel: 'Try Platinum Window',
   },
   {
     icon: '🦴',
     title: 'Progression Arbiter',
-    desc: 'Bone pseudo-progression vs true progression scorer for metastatic breast cancer. L2 logistic model trained on 239 events from 9 published studies.',
+    subtitle: 'Bone pseudo-progression vs true progression',
+    tag: 'Breast Cancer · Bone Mets',
+    desc: 'L2 logistic regression model trained on 239 progression events from 9 published mBC studies. Disambiguates true progression from pseudo-progression in bone-metastatic breast cancer before irreversible treatment decisions.',
     status: 'LIVE',
     link: '/progression-arbiter',
+    gradient: 'from-emerald-500 to-teal-600',
+    stats: [
+      { value: '239', label: 'Events' },
+      { value: '9', label: 'Studies' },
+      { value: 'L2', label: 'Model' },
+      { value: 'mBC', label: 'Indication' },
+    ],
+    features: [
+      'Bone-specific pseudo-progression scoring',
+      'L2 logistic regression · validated',
+      'Clinical signal integration (ECOG, pain, ALP)',
+      'Multi-factor confidence output',
+    ],
+    ctaLabel: 'Try Progression Arbiter',
+  },
+  {
+    icon: '📜',
+    title: 'PAE-Onc',
+    subtitle: 'AI-powered prior authorization appeal engine',
+    tag: 'Insurance Appeals · Oncology',
+    desc: 'Autonomous 3-agent pipeline (Ingestion → Ground Truth Match → Appeal Generation) that fights back against wrongful insurance denials of FDA-approved, NCCN-guideline-supported oncology treatments.',
+    status: 'BETA',
+    link: '/pae-onc',
+    gradient: 'from-red-500 to-rose-600',
+    stats: [
+      { value: '34%', label: 'Denial Rate' },
+      { value: '80%', label: 'Overturn Rate' },
+      { value: '6–10h', label: 'Saved/Appeal' },
+      { value: '3', label: 'AI Agents' },
+    ],
+    features: [
+      'Agent A: Denial ingestion & normalization',
+      'Agent B: NCCN/FDA ground truth matching',
+      'Agent C: Cohere LLM appeal generation',
+      'Manual review → edit → RingCentral fax',
+    ],
+    ctaLabel: 'Open PAE-Onc',
   },
   {
     icon: '🧪',
     title: 'Resistance Profiler',
-    desc: 'Multi-mechanism resistance detection across platinum, taxane, and checkpoint pathways. 7D mechanistic vector space with 2-of-N state machine.',
+    subtitle: '7D mechanistic resistance detection',
+    tag: 'Multi-cancer · Resistance',
+    desc: 'Real-time molecular surveillance across platinum, taxane, and checkpoint resistance pathways using a 7D mechanistic vector space with a deterministic 2-of-N state machine.',
     status: 'COMING SOON',
-  },
-  {
-    icon: '📊',
-    title: 'Cohort Explorer',
-    desc: `Interactive visualization of ${PROVENANCE.cohort} and institutional cohort distributions. Position any patient against the reference population.`,
-    status: 'COMING SOON',
+    gradient: 'from-amber-500 to-orange-600',
+    features: [
+      '7D mechanistic vector space',
+      '2-of-N deterministic state machine',
+      'Multi-pathway resistance scoring',
+      'Kills Chain re-ranking on resistance signal',
+    ],
+    ctaLabel: 'Get Notified',
   },
   {
     icon: '🏥',
     title: 'Trial Matcher',
-    desc: 'Automated matching against active clinical trials based on molecular profile, biomarker status, and eligibility criteria.',
+    subtitle: 'Molecular-profile trial routing',
+    tag: 'All Cancers · Trials',
+    desc: 'Automated eligibility matching against active NCI/ClinicalTrials.gov trials based on molecular profile, biomarker status, and inclusion/exclusion criteria.',
     status: 'COMING SOON',
+    gradient: 'from-sky-500 to-blue-600',
+    features: [
+      'Live ClinicalTrials.gov integration',
+      'Biomarker-first eligibility matching',
+      'NCCN guideline cross-reference',
+      'Distance & site availability filter',
+    ],
+    ctaLabel: 'Get Notified',
   },
 ];
 
-// ── Progression Arbiter ──────────────────────────────────────────────────────
+// Legacy CAPABILITIES alias for backward compatibility
+export const CAPABILITIES: Capability[] = PRODUCTS;
 
-export const PROGRESSION_ARBITER = {
-  title: 'PROGRESSION_ARBITER',
-  subtitle: 'Bone Pseudo-Progression vs True Progression Scoring',
-  stats: '239 Events | 9 Studies | L2 Logistic Regression',
-} as const;
-
-export const ARBITER_CONTEXT = {
-  problemDescription:
-    'Bone imaging changes during systemic therapy for metastatic breast cancer are frequently ambiguous. New sclerotic lesions, isolated SUV increases, and sub-5mm size changes can represent either healing (pseudo-progression) or true disease progression. Premature therapy switches based on these findings can deny patients benefit from effective treatment.',
-  whoNeedsThis:
-    'Medical oncologists treating metastatic breast cancer with bone-predominant disease, radiologists interpreting restaging scans, and tumor boards evaluating equivocal bone findings.',
-} as const;
-
-export const IMAGING_TYPES = [
-  { value: 'NEW_SCLEROTIC_BONE', label: 'New Sclerotic Bone Lesion' },
-  { value: 'SUV_INCREASE_NO_SIZE', label: 'SUV Increase (No Size Change)' },
-  { value: 'SUB_5MM_SIZE_INCREASE', label: 'Sub-5mm Size Increase' },
-  { value: 'NEW_SOFT_TISSUE_LESION', label: 'New Soft Tissue Lesion' },
-  { value: 'RECIST_PROGRESSION', label: 'RECIST Progression' },
-  { value: 'STABLE_DISEASE', label: 'Stable Disease' },
-  { value: 'OTHER_OR_UNCLEAR', label: 'Other / Unclear' },
-] as const;
-
-export const THERAPY_CLASSES = [
-  { value: 'CDK46', label: 'CDK4/6 Inhibitor' },
-  { value: 'HER2', label: 'HER2-Targeted' },
-  { value: 'ENDOCRINE', label: 'Endocrine Therapy' },
-  { value: 'CHEMO', label: 'Chemotherapy' },
-  { value: 'IO', label: 'Immunotherapy' },
-  { value: 'OTHER', label: 'Other' },
-] as const;
-
-export const ARBITER_DEFAULTS = {
-  imaging_change_type: 'NEW_SCLEROTIC_BONE' as const,
-  therapy_class: 'CDK46' as const,
-  symptomatic: false as boolean | null,
-  new_pain_at_site: false as boolean | null,
-  healing_flag: true,
-  weeks_on_therapy: 12,
-  alp_delta_pct: -5,
-  ca153_delta_pct: 0,
-};
-
-export const ARBITER_RISK_LABELS = {
-  LOW: '🟢 LOW RISK — Likely Pseudo-Progression',
-  MID: '🟡 INDETERMINATE — Additional Workup Required',
-  HIGH: '🔴 HIGH RISK — True Progression Concern',
-} as const;
+// ── Progression Arbiter Constants extracted to src/features/progression-arbiter/constants/index.ts
 
 // ── Mission ──────────────────────────────────────────────────────────────────
 

@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import PlatinumWindow from './pages/PlatinumWindow';
 import ProgressionArbiter from './pages/ProgressionArbiter';
 import About from './pages/About';
+import PaeOncApp from './features/pae-onc/App';
 
 export default function App() {
   return (
@@ -16,6 +17,7 @@ export default function App() {
             <Route path="/platinum-window" element={<PlatinumWindow />} />
             <Route path="/progression-arbiter" element={<ProgressionArbiter />} />
             <Route path="/about" element={<About />} />
+            <Route path="/pae-onc/*" element={<PaeOncApp />} />
           </Route>
         </Routes>
       </BrowserRouter>
