@@ -1,6 +1,6 @@
 import { QueryClient, type QueryFunction } from "@tanstack/react-query";
 
-const API_BASE = ""; // Query keys already include /api/ prefix; Vite proxy routes to correct backend
+const API_BASE = import.meta.env.VITE_PAE_URL || import.meta.env.VITE_API_URL || ""; // Query keys already include /api/ prefix; Vite proxy routes to correct backend
 
 async function throwIfResNotOk(res: Response) {
   if (!res.ok) {

@@ -12,7 +12,8 @@ export function useArbiterArtifact(category: string, filename: string) {
       setLoading(true);
       setError(null);
       try {
-        const response = await fetch(`/api/v1/progression-arbiter/artifacts/${category}/${filename}`);
+        const baseURL = import.meta.env.VITE_API_URL || import.meta.env.VITE_API_BASE_URL || '';
+        const response = await fetch(`${baseURL}/api/v1/progression-arbiter/artifacts/${category}/${filename}`);
         if (!response.ok) {
           throw new Error(`Failed to fetch artifact: ${response.statusText}`);
         }

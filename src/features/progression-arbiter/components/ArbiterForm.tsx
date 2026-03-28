@@ -17,7 +17,8 @@ export default function ArbiterForm({ data, onChange, onSubmit, isLoading }: Pro
     if (!nlpText.trim()) return;
     setIsParsing(true);
     try {
-      const response = await fetch('/api/v1/progression-arbiter/parse-report', {
+      const baseURL = import.meta.env.VITE_API_URL || import.meta.env.VITE_API_BASE_URL || '';
+      const response = await fetch(`${baseURL}/api/v1/progression-arbiter/parse-report`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ report_text: nlpText })

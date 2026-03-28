@@ -13,7 +13,8 @@ export function usePlatinumArtifact(category: string, filename: string) {
       setError(null);
       try {
         const path = category ? `${category}/${filename}` : filename;
-        const response = await fetch(`/api/v1/platinum-window/artifacts/${path}`);
+        const baseURL = import.meta.env.VITE_API_URL || import.meta.env.VITE_API_BASE_URL || '';
+        const response = await fetch(`${baseURL}/api/v1/platinum-window/artifacts/${path}`);
         if (!response.ok) {
           throw new Error(`Failed to fetch artifact: ${response.statusText}`);
         }

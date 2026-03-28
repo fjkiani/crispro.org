@@ -49,34 +49,19 @@ def _get_arbiter() -> ProgressionArbiter:
 router = APIRouter(prefix="/api/v1/progression-arbiter", tags=["Progression Arbiter"])
 
 
-# ── Demo endpoint ────────────────────────────────────────────────────────────
-
-@router.get("/demo", response_model=ArbiterScoreResponse)
-def demo_endpoint():
-    """
-    Classic CDK4/6i + new sclerotic bone + healing case.
-    Expected: p=0.00493, LOW risk, healing_flag driving.
-    """
-    arbiter = _get_arbiter()
-    result = arbiter.score(
-        imaging_change_type="NEW_SCLEROTIC_BONE",
-        therapy_class="CDK46",
-        symptomatic=False,
-        new_pain_at_site=False,
-        healing_flag=True,
-        weeks_on_therapy=12,
-        alp_delta_pct=-5.0,
-        ca153_delta_pct=0.0,
-    )
-    result["explanation"] = arbiter.explain(result)
-    return result
-
-
+# Demo endpoint removed per user request
 # ── Score endpoint ───────────────────────────────────────────────────────────
 
 @router.post("/score", response_model=ArbiterScoreResponse)
 def score_event(payload: ArbiterScoreRequest = Body(...)):
     """Score a single bone imaging event."""
+    # DEBUG LOG TO VERIFY INCOMING PAYLOAD FROM FRONTEND
+    print(f"\n[DEBUG] SCORE ENDPOINT RECEIVED PAYLOAD:", flush=True)
+    print(f"  imaging: {payload.imaging_change_type.value}", flush=True)
+    print(f"  therapy: {payload.therapy_class.value}", flush=True)
+    print(f"  weeks: {payload.weeks_on_therapy}", flush=True)
+    print(f"  alp_delta: {payload.alp_delta_pct}", flush=True)
+    
     arbiter = _get_arbiter()
     result = arbiter.score(
         imaging_change_type=payload.imaging_change_type.value,
@@ -92,9 +77,50 @@ def score_event(payload: ArbiterScoreRequest = Body(...)):
     return result
 
 
+from fastapi.responses import FileResponse
+from fastapi import HTTPException
+import os
+
 # ── Radiology report parser ─────────────────────────────────────────────────
 
 @router.post("/parse-report", response_model=RadiologyParseResponse)
 def parse_report(payload: RadiologyParseRequest = Body(...)):
     """Parse free-text radiology report to extract imaging change type and healing flag."""
     return parse_radiology_report(payload.text)
+
+# ── Artifacts Streamer (Glass Box Transparency) ──────────────────────────────
+
+@router.get("/artifacts/{category}/{filename}")
+def stream_artifact(category: str, filename: str):
+    """
+    Stream raw markdown/JSON artifacts to the frontend White Box panel.
+    Categories: docs, reports, data, models.
+    """
+    valid_categories = {"docs", "reports", "data", "models"}
+    if category not in valid_categories:
+        raise HTTPException(status_code=400, detail=f"Invalid category: {category}")
+        
+    # Project Root is exactly 3 levels up from this file's directory:
+    # Path(__file__) = backend/capabilities/progression_arbiter/router.py
+    # .parents[3] = CrisPRO.org (when __file__ is resolved)
+    
+    current_dir = Path(__file__).resolve().parent
+    # __file__ dir => progression_arbiter
+    # parent.parent => capabilities
+    # parent.parent.parent => backend
+    # parent.parent.parent.parent => CrisPRO.org
+    project_root = current_dir.parents[2]
+    category_dir = project_root / "progression-arbiter" / category
+    
+    file_path = (category_dir / filename).resolve()
+    
+    # Security: Ensure resolved path is strictly within the category directory
+    try:
+        file_path.relative_to(category_dir.resolve())
+    except ValueError:
+        raise HTTPException(status_code=403, detail="Directory traversal forbidden")
+        
+    if not file_path.exists() or not file_path.is_file():
+        raise HTTPException(status_code=404, detail=f"Artifact not found: {filename}")
+        
+    return FileResponse(file_path)

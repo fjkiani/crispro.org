@@ -288,3 +288,37 @@ def score_platinum_window(
     }))
 
     return resp
+
+
+from fastapi.responses import FileResponse
+
+# ── Artifacts Streamer (Glass Box Transparency) ──────────────────────────────
+
+@router.get("/artifacts/{filepath:path}")
+def stream_artifact(filepath: str):
+    """
+    Stream raw markdown/JSON artifacts to the frontend White Box panel for Platinum Window.
+    """
+    current_dir = Path(__file__).resolve().parent
+    project_root = current_dir.parents[2]
+    
+    # Base publication directory where the artifacts live
+    pub_dir = project_root / "publications" / "11-artistry7-hgsoc-subgroup"
+    
+    # If filepath references the backend reference dir directly:
+    if "reference" in filepath:
+        file_path = (current_dir / "reference" / Path(filepath).name).resolve()
+        category_dir = current_dir / "reference"
+    else:
+        file_path = (pub_dir / filepath).resolve()
+        category_dir = pub_dir
+    
+    try:
+        file_path.relative_to(category_dir.resolve())
+    except ValueError:
+        raise HTTPException(status_code=403, detail="Directory traversal forbidden")
+        
+    if not file_path.exists() or not file_path.is_file():
+        raise HTTPException(status_code=404, detail=f"Artifact not found: {filepath}")
+        
+    return FileResponse(file_path)

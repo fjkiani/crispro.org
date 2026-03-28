@@ -197,7 +197,8 @@ export default function AgentConsole() {
   const pollEtlStatus = async () => {
     const interval = setInterval(async () => {
       try {
-        const res = await fetch("/api/etl/status");
+        const baseURL = import.meta.env.VITE_PAE_URL || import.meta.env.VITE_API_URL || '';
+        const res = await fetch(`${baseURL}/api/etl/status`);
         const data = await res.json();
         setEtlStatus(data);
         if (data.status === "completed" || data.status === "failed") {
