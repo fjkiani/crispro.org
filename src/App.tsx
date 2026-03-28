@@ -6,10 +6,12 @@ import PlatinumWindow from './pages/PlatinumWindow';
 import ProgressionArbiter from './pages/ProgressionArbiter';
 import About from './pages/About';
 import PaeOncApp from './features/pae-onc/App';
+import MobileBlocker from './components/MobileBlocker';
 
 export default function App() {
   return (
     <ThemeProvider>
+      <MobileBlocker />
       <BrowserRouter>
         <Routes>
           <Route element={<Layout />}>
