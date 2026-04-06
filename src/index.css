@@ -1,0 +1,253 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+/* ── CrisPRO Design System ─────────────────────────────────────────────────── */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+/* ── Light Mode (Default) ─────────────────────────────────────────────────── */
+
+:root,
+[data-theme="light"] {
+  /* Background */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8fafc;
+  --bg-surface: #f1f5f9;
+  --bg-surface-hover: #e2e8f0;
+  --bg-surface-active: #cbd5e1;
+
+  /* Borders */
+  --border-subtle: #e2e8f0;
+  --border-default: #cbd5e1;
+  --border-hover: #94a3b8;
+
+  /* Text — high contrast */
+  --text-primary: #0f172a;
+  --text-secondary: #334155;
+  --text-muted: #475569;
+  --text-dim: #64748b;
+
+  /* Accent Colors */
+  --cyan: #0891b2;
+  --cyan-light: #06b6d4;
+  --cyan-glow: rgba(8, 145, 178, 0.1);
+  --emerald: #059669;
+  --emerald-glow: rgba(5, 150, 105, 0.1);
+  --amber: #d97706;
+  --amber-glow: rgba(217, 119, 6, 0.08);
+  --red: #dc2626;
+  --red-glow: rgba(220, 38, 38, 0.08);
+  --purple: #7c3aed;
+  --purple-glow: rgba(124, 58, 237, 0.08);
+
+  /* Nav */
+  --nav-bg: rgba(255, 255, 255, 0.9);
+  --nav-border: #e2e8f0;
+
+  /* Cards */
+  --card-bg: #ffffff;
+  --card-border: #e2e8f0;
+  --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.04);
+
+  /* Inputs */
+  --input-bg: #ffffff;
+  --input-border: #cbd5e1;
+  --input-text: #0f172a;
+
+  /* Gradient title */
+  --title-gradient: linear-gradient(135deg, #0f172a 0%, #0891b2 50%, #059669 100%);
+
+  /* Warning panels */
+  --warning-bg: #fffbeb;
+  --warning-border: #fcd34d;
+  --warning-text: #92400e;
+
+  /* Error */
+  --error-bg: #fef2f2;
+  --error-border: #fecaca;
+  --error-text: #991b1b;
+
+  /* JSON output */
+  --json-bg: #f8fafc;
+  --json-text: #334155;
+
+  /* Aliases for Zeta-Core & components expecting shadcn-style tokens */
+  --text: var(--text-primary);
+  --text-faint: var(--text-dim);
+  --surface: var(--card-bg);
+  --surface-offset: var(--bg-surface);
+  --border: var(--card-border);
+  --accent: var(--cyan);
+  --accent-hover: var(--cyan-light);
+  --accent-subtle: var(--cyan-glow);
+  --shadow-sm: var(--card-shadow);
+  --font-display: var(--font-sans);
+  --font-body: var(--font-sans);
+  --text-xs: 0.75rem;
+}
+
+/* ── Dark Mode ────────────────────────────────────────────────────────────── */
+
+[data-theme="dark"] {
+  --bg-primary: #060611;
+  --bg-secondary: #0a0a1a;
+  --bg-surface: rgba(255, 255, 255, 0.04);
+  --bg-surface-hover: rgba(255, 255, 255, 0.07);
+  --bg-surface-active: rgba(255, 255, 255, 0.1);
+
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-default: rgba(255, 255, 255, 0.12);
+  --border-hover: rgba(255, 255, 255, 0.2);
+
+  --text-primary: #f1f5f9;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
+  --text-dim: #64748b;
+
+  --cyan: #06b6d4;
+  --cyan-light: #22d3ee;
+  --cyan-glow: rgba(6, 182, 212, 0.15);
+  --emerald: #10b981;
+  --emerald-glow: rgba(16, 185, 129, 0.15);
+  --amber: #f59e0b;
+  --amber-glow: rgba(245, 158, 11, 0.15);
+  --red: #ef4444;
+  --red-glow: rgba(239, 68, 68, 0.15);
+  --purple: #a78bfa;
+  --purple-glow: rgba(167, 139, 250, 0.15);
+
+  --nav-bg: rgba(6, 6, 17, 0.85);
+  --nav-border: rgba(255, 255, 255, 0.06);
+
+  --card-bg: rgba(255, 255, 255, 0.03);
+  --card-border: rgba(255, 255, 255, 0.06);
+  --card-shadow: none;
+
+  --input-bg: rgba(255, 255, 255, 0.05);
+  --input-border: rgba(255, 255, 255, 0.12);
+  --input-text: #f1f5f9;
+
+  --title-gradient: linear-gradient(135deg, #f1f5f9 0%, #06b6d4 50%, #10b981 100%);
+
+  --warning-bg: rgba(245, 158, 11, 0.1);
+  --warning-border: rgba(245, 158, 11, 0.3);
+  --warning-text: #fcd34d;
+
+  --error-bg: rgba(239, 68, 68, 0.1);
+  --error-border: rgba(239, 68, 68, 0.3);
+  --error-text: #fca5a5;
+
+  --json-bg: rgba(0, 0, 0, 0.3);
+  --json-text: #94a3b8;
+
+  --text: var(--text-primary);
+  --text-faint: var(--text-dim);
+  --surface: var(--card-bg);
+  --surface-offset: var(--bg-surface);
+  --border: var(--card-border);
+  --accent: var(--cyan);
+  --accent-hover: var(--cyan-light);
+  --accent-subtle: var(--cyan-glow);
+  --shadow-sm: var(--card-shadow);
+  --font-display: var(--font-sans);
+  --font-body: var(--font-sans);
+  --text-xs: 0.75rem;
+}
+
+/* ── Shared Tokens ────────────────────────────────────────────────────────── */
+
+:root {
+  /* Spacing */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+  --space-3xl: 4rem;
+
+  /* Radius */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-full: 999px;
+
+  /* Typography */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+
+  /* Transitions */
+  --transition-fast: 150ms ease;
+  --transition-normal: 250ms ease;
+  --transition-slow: 400ms ease;
+}
+
+/* ── Reset ─────────────────────────────────────────────────────────────────── */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.6;
+  min-height: 100vh;
+  transition: background var(--transition-normal), color var(--transition-normal);
+}
+
+/* ── Utility Classes ───────────────────────────────────────────────────────── */
+
+.glass {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  box-shadow: var(--card-shadow);
+  border-radius: var(--radius-lg);
+}
+
+.glass:hover {
+  border-color: var(--border-hover);
+}
+
+/* ── Links ─────────────────────────────────────────────────────────────────── */
+
+a {
+  color: var(--cyan);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+a:hover {
+  color: var(--cyan-light);
+}
+
+/* ── Animations ────────────────────────────────────────────────────────────── */
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.fade-in { animation: fadeIn 0.4s ease-out; }
+.fade-up { animation: fadeUp 0.4s ease-out backwards; }

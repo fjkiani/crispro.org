@@ -1,0 +1,9 @@
+.urgency-badge {
+  display: inline-block;
+  padding: 0.3rem 0.9rem;
+  border-radius: var(--radius-full);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  border: 1px solid;
+}

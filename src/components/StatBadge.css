@@ -1,0 +1,25 @@
+.stat-badge {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--space-md) var(--space-lg);
+  border-radius: var(--radius-md);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+}
+
+.stat-badge-value {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--cyan);
+  line-height: 1.2;
+}
+
+.stat-badge-label {
+  font-size: 0.7rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
