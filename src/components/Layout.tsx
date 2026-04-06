@@ -36,7 +36,7 @@ export default function Layout() {
                 PAE-Onc Engine
               </NavLink>
               <NavLink to="/zeta-core" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'} onClick={closeMenu}>
-                Zeta-Core
+                Evidence
               </NavLink>
               <NavLink to="/about" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'} onClick={closeMenu}>
                 About

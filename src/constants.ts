@@ -10,6 +10,8 @@ export const PLATFORM = {
   name: 'CrisPRO',
   domain: '.org',
   fullName: 'CrisPRO.org',
+  /** Canonical site origin (no trailing slash). Override in CI with VITE_SITE_URL. */
+  siteOrigin: (import.meta.env.VITE_SITE_URL as string | undefined)?.replace(/\/$/, '') || 'https://crispro.org',
   tagline: 'Precision Oncology for the 90%',
   description:
     'Open-source clinical decision support powered by CRISPR functional genomics. Turning molecular data into actionable treatment timing.',
@@ -176,10 +178,10 @@ export const PRODUCTS: Capability[] = [
   },
   {
     icon: '⚡',
-    title: 'Zeta-Core',
+    title: 'Evidence',
     subtitle: 'Glass-box PubMed evidence engine',
     tag: 'All Cancers · Evidence',
-    desc: 'Ask a clinical question; Zeta-Core searches PubMed in real time, separates human clinical data from pre-clinical noise, and returns a blunt evidence verdict (SUPPORTED / CONSIDER / MECHANISTIC SPECULATION / INSUFFICIENT) with full trace transparency.',
+    desc: 'Ask a clinical question; Evidence searches PubMed in real time, separates human clinical data from pre-clinical noise, and returns a blunt evidence verdict (SUPPORTED / CONSIDER / MECHANISTIC SPECULATION / INSUFFICIENT) with full trace transparency.',
     status: 'BETA',
     link: '/zeta-core',
     gradient: 'from-cyan-500 to-blue-600',
@@ -195,7 +197,7 @@ export const PRODUCTS: Capability[] = [
       'Drug interaction flags with AUC change data',
       'Synthesized mechanisms + cynical verdict summary',
     ],
-    ctaLabel: 'Open Zeta-Core',
+    ctaLabel: 'Open Evidence',
   },
   {
     icon: '🧪',
@@ -271,59 +273,21 @@ export const GENE_FIELDS = [
 export const ABOUT = {
   createdBy: 'CrisPRO.ai',
   founder: 'Fahad Kiani',
-  founderRole: 'Founder & CEO',
+  founderRole: 'Founder & CEO ',
   founderBio:
-    'Fahad Kiani is a technologist and entrepreneur building AI systems that translate cutting-edge genomics research into clinical decision support tools. His mission is to democratize precision oncology — ensuring that molecular-guided treatment is accessible beyond the 10% of patients treated at elite academic centers.',
-  visionTitle: 'Why We Exist',
+    'Builds clinical decision-support for oncology—stromal-immune timing, progression signals, and evidence tools. Research use only; not a substitute for clinical judgment.',
+  coFounder: 'Khalid Sheikh',
+  coFounderRole: 'Founder & CEO of The Noor Project',
+  coFounderMessage: [
+    'When we give someone charity, we should be thankful to them. We may be fixing their dunya, (worldly life), but they are fixing our akhirah (here after). The best among us are those who are best for others.',
+    
+  ] as const,
+  /** The Noor Project — UOL Noor Hospital program page */
+  noorHospitalUrl: 'https://thenoorproject.org/uol-noor-hospital/',
+  affiliationIntro:
+    'Affiliated with The Noor Project and UOL Noor Hospital (University of Lahore)—a 65-bed facility for underserved patients.',
+  affiliationLegalLine: 'Nonprofit Organization 501 (C) 3 · Tax ID# 45-5637293',
+  visionTitle: 'Why we built this',
   visionBody:
-    'Today, fewer than 10% of cancer patients receive treatment guided by molecular profiling. The other 90% are treated with calendar-based protocols and population averages. CrisPRO exists to close that gap — not by replacing physicians, but by giving every oncologist the molecular intelligence that only a handful of academic centers currently possess.',
-  standardOfCareProblems: [
-    {
-      icon: '📅',
-      title: 'Calendar-Based Dosing',
-      detail: 'Standard of care uses fixed 21-day cycles for platinum chemotherapy. It ignores that each patient\'s tumor microenvironment evolves at a different rate — some patients need intervention at cycle 2, others can safely wait to cycle 6.',
-    },
-    {
-      icon: '📏',
-      title: 'One-Size-Fits-All Protocols',
-      detail: 'NCCN guidelines stratify by stage and histology, but not by the molecular composition of the tumor stroma. Two Stage IIIC HGSOC patients can have radically different stromal-immune landscapes — and radically different treatment windows.',
-    },
-    {
-      icon: '🔬',
-      title: 'Imaging Lag',
-      detail: 'RECIST criteria (CT-based response assessment) detect changes weeks to months after the molecular window has closed. By the time imaging shows progression, the stromal cage has already sealed.',
-    },
-    {
-      icon: '🏥',
-      title: 'Access Inequality',
-      detail: 'Molecular profiling and precision oncology expertise are concentrated in a few academic medical centers. Community oncologists — who treat the majority of cancer patients — often lack the tools to interpret and act on genomic data.',
-    },
-    {
-      icon: '⚡',
-      title: 'Resistance Blindness',
-      detail: 'Current practice detects platinum resistance after it has occurred (rising CA-125, progressive disease on imaging). There is no standard mechanism for real-time molecular surveillance of resistance emergence.',
-    },
-    {
-      icon: '🧩',
-      title: 'Siloed Biomarkers',
-      detail: 'Individual biomarkers (BRCA status, HRD score) are evaluated in isolation. No standard tool integrates stromal, immune, and metabolic markers into a unified treatment-timing signal.',
-    },
-  ],
-  howWeHelp: [
-    {
-      icon: '🎯',
-      title: 'Molecular Timing, Not Calendar Timing',
-      detail: 'Our Platinum Window tool computes a patient-specific cycle countdown based on 10-gene stromal-immune profiling — replacing arbitrary 21-day schedules with data-driven treatment windows.',
-    },
-    {
-      icon: '🌐',
-      title: 'Democratize Access',
-      detail: 'CrisPRO.org is open-source so any oncologist — from a community clinic in rural America to a teaching hospital in Nairobi — can access the same molecular intelligence as MD Anderson or Memorial Sloan Kettering.',
-    },
-    {
-      icon: '🤝',
-      title: 'Assist, Not Replace',
-      detail: 'CrisPRO is a decision-support tool, not an autonomous agent. It surfaces molecular signals, treatment timing, and trial routing — but the oncologist makes the final call. Every recommendation comes with full provenance and confidence intervals.',
-    },
-  ],
+    'Most cancer care still runs on fixed schedules and late imaging—not on what the tumor microenvironment is doing. CrisPRO is software to surface molecular timing and evidence; physicians stay in charge.',
 } as const;
