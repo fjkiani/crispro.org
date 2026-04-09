@@ -12,6 +12,17 @@ dist
 dist-ssr
 *.local
 
+# Secrets (never commit)
+.env
+.env.local
+oncology-backend-minimal/.env
+
+# Python
+**/__pycache__/
+*.py[cod]
+backend/venv/
+backend/vendor/pubmed_parser_master/data/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

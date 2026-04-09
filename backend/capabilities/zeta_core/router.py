@@ -21,7 +21,7 @@ from fastapi import APIRouter
 from fastapi.responses import StreamingResponse
 from pydantic import BaseModel
 
-from .pubmed_client import search_pubmed, build_simple_query, build_keyword_query
+from .pubmed_client import search_pubmed_async, build_simple_query, build_keyword_query
 from .diffbot_client import enrich_articles_diffbot
 from .human_evidence import (
     likely_human_clinical_article,
@@ -261,7 +261,7 @@ def analyze(req: AnalyzeRequest):
         articles, total_found, final_query = [], 0, formulated_query
 
         try:
-            articles, total_found = search_pubmed(formulated_query, max_results)
+            articles, total_found = await search_pubmed_async(formulated_query, max_results)
         except Exception as e:
             yield _sse("step", {"type": "pubmed_error", "message": f"PubMed error: {e}"})
 
@@ -271,7 +271,7 @@ def analyze(req: AnalyzeRequest):
             yield _sse("step", {"type": "query_fallback", "attempt": 1, "query": simple_q,
                                 "message": "0 results — trying simplified query…"})
             try:
-                articles, total_found = search_pubmed(simple_q, max_results)
+                articles, total_found = await search_pubmed_async(simple_q, max_results)
                 if articles:
                     final_query = simple_q
             except Exception:
@@ -282,7 +282,7 @@ def analyze(req: AnalyzeRequest):
             yield _sse("step", {"type": "query_fallback", "attempt": 2, "query": kw_q,
                                 "message": "Still 0 — trying keyword-only search…"})
             try:
-                articles, total_found = search_pubmed(kw_q, max_results)
+                articles, total_found = await search_pubmed_async(kw_q, max_results)
                 if articles:
                     final_query = kw_q
             except Exception:

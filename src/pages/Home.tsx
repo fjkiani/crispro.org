@@ -11,6 +11,7 @@ const PRODUCT_ICONS: Record<string, React.ComponentType<{ size?: number; strokeW
   'Zeta-Core':           Zap,
   'Resistance Profiler': FlaskConical,
   'Trial Matcher':        Hospital,
+  'Research Intelligence': FlaskConical,
 };
 
 // ── Gradient map by product title ─────────────────────────────────────────
@@ -22,6 +23,7 @@ const GRADIENT_MAP: Record<string, [string, string]> = {
   'Zeta-Core':           ['#0891b2', '#2563eb'],
   'Resistance Profiler': ['#d97706', '#ea580c'],
   'Trial Matcher':        ['#0284c7', '#2563eb'],
+  'Research Intelligence': ['#6366f1', '#7c3aed'],
 };
 
 export default function Home() {

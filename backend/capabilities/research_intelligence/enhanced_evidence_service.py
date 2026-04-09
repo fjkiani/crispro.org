@@ -128,6 +128,7 @@ Return ONLY valid JSON, no markdown formatting."""
                         system_message=system_message,
                         max_tokens=2000,
                         temperature=0.0,
+                        response_mime_type="application/json",
                     )
                     response_text = llm_response.text
                     break
@@ -273,6 +274,7 @@ Return ONLY valid JSON, no markdown formatting."""
                         system_message=system_message,
                         max_tokens=4096,
                         temperature=0.0,
+                        response_mime_type="application/json",
                     )
                     response_text = llm_response.text
                     break

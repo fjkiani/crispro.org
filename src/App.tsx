@@ -7,6 +7,7 @@ import ProgressionArbiter from './pages/ProgressionArbiter';
 import About from './pages/About';
 import PaeOncApp from './features/pae-onc/App';
 import ZetaCore from './pages/ZetaCore';
+import ResearchIntelligence from './pages/ResearchIntelligence';
 import MobileBlocker from './components/MobileBlocker';
 
 export default function App() {
@@ -22,6 +23,7 @@ export default function App() {
             <Route path="/about" element={<About />} />
             <Route path="/pae-onc/*" element={<PaeOncApp />} />
             <Route path="/zeta-core" element={<ZetaCore />} />
+            <Route path="/research-intelligence" element={<ResearchIntelligence />} />
           </Route>
         </Routes>
       </BrowserRouter>

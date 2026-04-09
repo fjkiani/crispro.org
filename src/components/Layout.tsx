@@ -8,7 +8,10 @@ import './Layout.css';
 export default function Layout() {
   const location = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const isFullWidth = location.pathname.startsWith('/progression-arbiter') || location.pathname.startsWith('/pae-onc');
+  const isFullWidth =
+    location.pathname.startsWith('/progression-arbiter') ||
+    location.pathname.startsWith('/pae-onc') ||
+    location.pathname.startsWith('/research-intelligence');
 
   const closeMenu = () => setIsMobileMenuOpen(false);
 
@@ -37,6 +40,9 @@ export default function Layout() {
               </NavLink>
               <NavLink to="/zeta-core" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'} onClick={closeMenu}>
                 Evidence
+              </NavLink>
+              <NavLink to="/research-intelligence" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'} onClick={closeMenu}>
+                Research Intel
               </NavLink>
               <NavLink to="/about" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'} onClick={closeMenu}>
                 About

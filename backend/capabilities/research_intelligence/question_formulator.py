@@ -104,6 +104,7 @@ Return JSON only:
                 system_message="You are a biomedical research analyst. Return valid JSON only.",
                 temperature=0.3,
                 max_tokens=1500,
+                response_mime_type="application/json",
             )
             response = llm_resp.text.strip()
             if "```json" in response:

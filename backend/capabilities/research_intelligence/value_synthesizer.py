@@ -63,7 +63,8 @@ class ValueSynthesizer:
                 response = await self.llm.chat(
                     message=prompt,
                     temperature=0.3,
-                    max_tokens=1000
+                    max_tokens=1000,
+                    response_mime_type="text/plain",
                 )
                 
                 # Parse response
