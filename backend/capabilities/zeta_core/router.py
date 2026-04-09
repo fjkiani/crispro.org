@@ -8,6 +8,8 @@ Endpoints:
 Auto-discovered by capabilities/__init__.py — no changes to main.py needed.
 """
 
+from __future__ import annotations
+
 import json
 import os
 import logging
@@ -45,11 +47,18 @@ def _groq_client() -> Groq:
     return Groq(api_key=key)
 
 
-def _groq_generate(prompt: str, max_tokens: int = 512, json_mode: bool = False) -> str:
+def _groq_generate(
+    prompt: str,
+    max_tokens: int = 512,
+    json_mode: bool = False,
+    *,
+    model: str | None = None,
+) -> str:
     """Chat completion via Groq OpenAI-compatible API. Returns assistant text or raises."""
     client = _groq_client()
+    use_model = (model or GROQ_MODEL).strip()
     kwargs: dict = {
-        "model": GROQ_MODEL,
+        "model": use_model,
         "messages": [{"role": "user", "content": prompt}],
         "temperature": GROQ_TEMPERATURE,
         "max_completion_tokens": max_tokens,
@@ -63,6 +72,59 @@ def _groq_generate(prompt: str, max_tokens: int = 512, json_mode: bool = False) 
     if not text:
         raise RuntimeError("Empty completion from Groq")
     return text
+
+
+def _parse_json_object_from_llm(text: str) -> dict:
+    """Strip markdown fences and parse the first top-level JSON object (Groq often adds prose or ```json)."""
+    t = (text or "").strip()
+    t = re.sub(r"^```(?:json)?\s*", "", t, flags=re.I)
+    t = re.sub(r"\s*```\s*$", "", t).strip()
+    decoder = json.JSONDecoder()
+    for i, ch in enumerate(t):
+        if ch != "{":
+            continue
+        try:
+            obj, _ = decoder.raw_decode(t[i:])
+            if isinstance(obj, dict):
+                return obj
+        except json.JSONDecodeError:
+            continue
+    raise ValueError("No valid JSON object in model output")
+
+
+def _synthesis_model_chain() -> list[str]:
+    primary = GROQ_MODEL.strip()
+    fb = (os.environ.get("ZETA_CORE_GROQ_MODEL_FALLBACK") or "llama-3.1-8b-instant").strip()
+    out = []
+    for m in (primary, fb):
+        if m and m not in out:
+            out.append(m)
+    return out or ["llama-3.3-70b-versatile"]
+
+
+def _run_zeta_synthesis(prompt: str) -> dict:
+    """
+    Groq synthesis with retries: JSON mode on/off, then fallback model.
+    Avoids false 'SYNTHESIS ENGINE DEGRADED' when the model wraps JSON or rejects response_format.
+    """
+    last_err: Exception | None = None
+    for model_id in _synthesis_model_chain():
+        for json_mode in (True, False):
+            try:
+                raw = _groq_generate(
+                    prompt, max_tokens=4096, json_mode=json_mode, model=model_id
+                )
+                return _parse_json_object_from_llm(raw)
+            except Exception as e:
+                last_err = e
+                logger.warning(
+                    "[zeta_core] synthesis attempt failed model=%s json_mode=%s: %s",
+                    model_id,
+                    json_mode,
+                    e,
+                )
+    assert last_err is not None
+    raise last_err
 
 
 # ── Parse-context endpoint ────────────────────────────────────────────────────
@@ -294,10 +356,9 @@ def analyze(req: AnalyzeRequest):
                     articles_for_synthesis,
                     max_articles=synth_cap,
                 )
-                raw = _groq_generate(prompt, max_tokens=4096, json_mode=True)
-                cleaned = re.sub(r"^```json\n?", "", raw).rstrip("` \n")
-                result_holder.append(json.loads(cleaned))
+                result_holder.append(_run_zeta_synthesis(prompt))
             except Exception as e:
+                logger.exception("[zeta_core] synthesis exhausted retries")
                 error_holder.append(e)
             finally:
                 done_event.set()
